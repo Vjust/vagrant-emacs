@@ -1,2 +1,6 @@
 Vagrantfile~
 *~
+.vagrant
+files/#*
+files/.#*
+

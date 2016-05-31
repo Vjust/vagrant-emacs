@@ -4,16 +4,9 @@
 (require 'package)
 
 (setq cfg-var:packages '(
-       emmet-mode
        ergoemacs-mode
-       flycheck
-       flycheck-pyflakes
        monokai-theme
-       py-autopep8
-       py-isort
        rainbow-mode
-       yafolding
-       yasnippet
        git))
 
 (defun cfg:install-packages ()
@@ -25,13 +18,15 @@
             (dolist (p cfg-var:packages)
                 (package-install p)))))
 
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
-;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+;(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (cfg:install-packages)
+
+
 
 ;---------------------------------------------------------
 

@@ -11,9 +11,19 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: File.join(File.dirname(__FILE__), "files", "emacs-script.el"), destination: "/home/vagrant/mysetup/emacs-script.el"
 
   config.vm.provision "shell", path: "provision.sh"
+  config.vm.provision "shell", path: "python-provision.sh"
+  
+  config.vm.provision "shell", privileged:false, inline: <<-SHELL
+   emacs --script /home/vagrant/mysetup/emacs-script.el
 
-  config.vm.provision "shell", inline: <<-SHELL
-   su -c "emacs --script /home/vagrant/mysetup/emacs-script.el" vagrant
+   # create a venv for normal purposes
+   cd ~
+   mkdir work && cd work
+   cd ~/work
+   virtualenv -p python2 env
+   source env/bin/activate
+   pip install --upgrade ipython
+
   SHELL
 
   # config.vm.network :forwarded_port, guest: 80, host: 8080
